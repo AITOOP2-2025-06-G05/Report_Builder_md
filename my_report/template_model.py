@@ -209,7 +209,12 @@ $MY_THOUGHTS_AND_NEXT_WORKS
         """
         # レポートの保存
         if file_name is None:
-            file_name = f"{self.status['basic_info']['MY_ID']}{self.status['basic_info']['MY_NAME']}.md"
+            
+            # 1. CLASS_NOを取得
+            class_no = self.status['basic_info']['CLASS_NO']
+            # 2. ファイル名を「ゼロ埋め2桁の回数_学籍番号_氏名.md」形式で生成
+            file_name = f"{class_no:02d}_{self.status['basic_info']['MY_ID']}_{self.status['basic_info']['MY_NAME']}.md"
+
         self.save_file_without_history(file_text, file_name)
 
         # historyの保存
